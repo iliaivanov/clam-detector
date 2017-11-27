@@ -1,6 +1,5 @@
 .vscode/
-images/*.j*
-images/*.p*
+clam_shelter/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
