@@ -2,6 +2,7 @@
 import argparse
 import imutils
 import cv2
+import imghdr
 
 from functools import reduce
 from os import listdir
@@ -45,7 +46,7 @@ def get_clam_name(filename): return filename.split('.')[0]
 
 def calculate_clam_area(clam, track):
     clam_track = join(track, clam)
-
+    
     # load the image, convert it to grayscale, blur it slightly,
     # and threshold it
     image = cv2.imread(clam_track)
@@ -79,7 +80,7 @@ visualize = args["visualize"] == 'true'
 
 # clams directory images
 clam_bay = args["directory"]
-clams_shelter = [clam_shell for clam_shell in listdir(clam_bay) if isfile(join(clam_bay, clam_shell))]
+clams_shelter = [clam_shell for clam_shell in listdir(clam_bay) if isfile(join(clam_bay, clam_shell)) and imghdr.what(join(clam_bay, clam_shell)) != None ]
 
 clam_areas = [calculate_clam_area(clam, clam_bay) for clam in clams_shelter]
 sorted_clam_areas = sorted(clam_areas, key=lambda item: item[1], reverse=True)
