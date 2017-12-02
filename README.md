@@ -1,5 +1,5 @@
 # Clam detector
-This script was inspired by my family travel to Italy. I collected a lot of beautiful clams on the beach and got an idea to create kinda board with these shells ordered by size. Measure them manually was to durty, so that's how this script was created :)
+This script was inspired by my family travel to Italy. I collected lots of beautiful clams on the beach and got an idea to create a sorta board with these shells ordered by size. Measuring them manually was too "dirty", so that's how this script was created :)
 
 # Usage
 1. Clone project `git clone git@github.com:iliaivanov/clam-detector.git`.
