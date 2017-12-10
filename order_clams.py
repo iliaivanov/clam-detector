@@ -51,15 +51,15 @@ def calculate_clam_area(clam, track):
     # and threshold it
     image = cv2.imread(clam_track)
     image = imutils.resize(image, width=600)
-
+    
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     blurred = cv2.GaussianBlur(gray, (5, 5), 0)
-    thresh = cv2.threshold(blurred, 60, 255, cv2.THRESH_BINARY)[1]
+    thresh = cv2.threshold(blurred, 100, 255, cv2.THRESH_BINARY)[1]
 
     # find contours in the thresholded image
     cnts = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     cnts = cnts[0] if imutils.is_cv2() else cnts[1]
-
+    
     # find biggest clam contour
     main_contour = find_biggest_contour(cnts)
 
@@ -77,9 +77,9 @@ args = vars(ap.parse_args())
 
 # draw_text(image, main_contour, clam)
 visualize = args["visualize"] == 'true'
-
 # clams directory images
 clam_bay = args["directory"]
+
 clams_shelter = [clam_shell for clam_shell in listdir(clam_bay) if isfile(join(clam_bay, clam_shell)) and imghdr.what(join(clam_bay, clam_shell)) != None ]
 
 clam_areas = [calculate_clam_area(clam, clam_bay) for clam in clams_shelter]
